@@ -4,7 +4,7 @@
 
 #include "Robot.h"
 #include <frc2/command/CommandScheduler.h>
-#include <frc/Joystick.h>
+#include <frc/XboxController.h>
 #include <frc/TimedRobot.h>
 #include <frc/drive/DifferentialDrive.h>
 #include "rev/CANSparkMax.h"
@@ -19,7 +19,7 @@ class Robot : public frc::TimedRobot {
    
 
    static const int leftLeadDeviceID = 1, leftFollowDeviceID = 2, rightLeadDeviceID = 6, rightFollowDeviceID = 5;
-   
+
   rev::CANSparkMax m_leftLeadMotor{leftLeadDeviceID, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_rightLeadMotor{rightLeadDeviceID, rev::CANSparkMax::MotorType::kBrushless};
   rev::CANSparkMax m_leftFollowMotor{leftFollowDeviceID, rev::CANSparkMax::MotorType::kBrushless};
