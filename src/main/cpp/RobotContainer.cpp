@@ -12,12 +12,17 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
+
+   
   // Configure the button bindings
   ConfigureBindings();
 }
 
+
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
+
+
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   frc2::Trigger([this] {
