@@ -11,6 +11,14 @@
 
 #include "RobotContainer.h"
 
+class Chasis : public frc:SubsystemBase {
+  public: 
+  Chasis();
+  void Periodic() override; 
+
+  void SetMotors(double leftSpeed, double rightSpeed);
+  
+}
 class Robot : public frc::TimedRobot {
  public:
   Robot();

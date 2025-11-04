@@ -3,8 +3,26 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #pragma once
-
+#include <frc/XboxController.h>
 #include <frc2/command/CommandPtr.h>
+#include "Chasis.h"
+
+class RobotContainer {
+  public: 
+  RobotContainer(); 
+
+
+
+private: 
+Chasis m_chasis; 
+
+frc::XboxController m_drivecontroller[0];
+
+
+void ConfigureBindings();
+ 
+ }; 
+
 #include <frc2/command/button/CommandXboxController.h>
 
 #include "Constants.h"
