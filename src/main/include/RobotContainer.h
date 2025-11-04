@@ -34,7 +34,7 @@ void ConfigureBindings();
  * actually be handled in the {@link Robot} periodic methods (other than the
  * scheduler calls).  Instead, the structure of the robot (including subsystems,
  * commands, and trigger mappings) should be declared here.
- */
+ 
 class RobotContainer {
  public:
   RobotContainer();
@@ -51,3 +51,7 @@ class RobotContainer {
 
   void ConfigureBindings();
 };
+  ///*/
+
+#include <frc/XboxController.h>
+
