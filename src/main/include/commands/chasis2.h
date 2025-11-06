@@ -6,8 +6,9 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/chasis.h"
 
-#include "subsystems/ExampleSubsystem.h"
+
 
 /**
  * An example command that uses an example subsystem.
@@ -16,16 +17,23 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class ExampleCommand
-    : public frc2::CommandHelper<frc2::Command, ExampleCommand> {
+class ChasisDrive : public frc2::CommandHelper<frc2::Command, ChasisDrive> {
  public:
   /**
    * Creates a new ExampleCommand.
    *
-   * @param subsystem The subsystem used by this command.
-   */
-  explicit ExampleCommand(ExampleSubsystem* subsystem);
+   //@param subsystem The subsystem used by this command.
 
+   */
+ 
+ ChasisDrive(ChasisSubsystem* subsystem, std::function<double()> forward, 
+ std:: function<double()> rotation); 
+  
+
+
+void Execute() override; 
  private:
-  ExampleSubsystem* m_subsystem;
+  ChasisDrive* m_chasis;
+  std::function<double()> m_forward; 
+  std::function<double()> m_rotation; 
 };

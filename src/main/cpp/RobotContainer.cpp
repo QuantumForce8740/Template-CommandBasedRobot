@@ -3,11 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "RobotContainer.h"
-
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/Trigger.h>
 
-#include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
+//#include "commands/Autos.h"
+#include "commands/chasis2.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
@@ -19,17 +20,11 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
-  // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
-
-  // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
-  // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
+m_drive.SetDefaultCommand(DefaultDrive(
+  &m_drive, [this] { return -m_driverController.GetLeftY(1); },
+  [this] {return -m_driverController.GetRightX(2); })); 
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
-}
+  frc2::Command* RobotContainer::GetAutonomousCommand() {
+    return m_chooser.GetSelected(); 
+  }

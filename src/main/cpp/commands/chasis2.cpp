@@ -1,0 +1,27 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+#include "commands/chasis2.h"
+
+ChasisDrive::ChasisDrive(ChasisSubsystem* subsystem, 
+
+ std::function<double()> forward,
+                           std::function<double()> forward,
+                           std::function<double()> rotation)
+    : m_drive{subsystem},
+      m_forward{std::move(forward)},
+      m_rotation{std::move(rotation)} 
+
+    : m_drive{subsystem}, 
+    m_forward{std::move(forward)},
+    m_rotation{std::move(rotation)} {
+        AddRequirements(subsystem);
+
+    }
+ 
+ void ChasisDrive::Execute() {
+    m_drive->ArcadeDrive(m_forward(), m_rotation());
+ }
+
+

@@ -6,9 +6,12 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include <frc/smartdashboard/SendableChooser.h>
+#include <frc/XboxController.h>
 
 #include "Constants.h"
-#include "subsystems/ExampleSubsystem.h"
+#include "subsystems/chasis.h"
+#include "commands/chasis2.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -28,8 +31,13 @@ class RobotContainer {
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
 
-  // The robot's subsystems are defined here...
-  ExampleSubsystem m_subsystem;
 
+
+  // The robot's subsystems are defined here...
+  ChasisSubsystem m_drive;
+  frc::SendableChooser<frc2::Command*> m_chooser;
+
+  frc::XboxController m_drivecontroller{0};
+  
   void ConfigureBindings();
 };

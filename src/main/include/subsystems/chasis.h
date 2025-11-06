@@ -6,15 +6,16 @@
 
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
+#include <rev/SparkMax.h>
+#include <rev/config/SparkConfig.h> 
+#include "Constants.h"
 
-class ExampleSubsystem : public frc2::SubsystemBase {
+using namespace rev::spark; 
+
+class ChasisSubsystem : public frc2::SubsystemBase {
  public:
-  ExampleSubsystem();
+  ChasisSubsystem();
 
-  /**
-   * Example command factory method.
-   */
-  frc2::CommandPtr ExampleMethodCommand();
 
   /**
    * An example method querying a boolean state of the subsystem (for example, a
@@ -22,7 +23,6 @@ class ExampleSubsystem : public frc2::SubsystemBase {
    *
    * @return value of some boolean subsystem state, such as a digital sensor.
    */
-  bool ExampleCondition();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -33,9 +33,22 @@ class ExampleSubsystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs during
    * simulation.
    */
-  void SimulationPeriodic() override;
+  void ArcadeDrive(double forward, double rotation);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+ SparkMax m_leftLeadMotor{1, rev::spark::SparkMax::MotorType::kBrushless};
+  SparkMax m_rightLeadMotor{6, rev::spark::SparkMax::MotorType::kBrushless};
+  SparkMax m_leftFollowMotor{2, rev::spark::SparkMax::MotorType::kBrushless};
+  SparkMax m_rightFollowMotor{5, rev::spark::SparkMax::MotorType::kBrushless};
+
+frc::DifferencialDrive m_drive{m_leftLeadMotor, m_rightLeadMotor};
+
+SparkMaxConfig globalConfig; 
+SparkMaxConfig rightLeaderConfig;
+SparkMaxConfig leftLeaderConfig; 
+SparkMaxConfig leftFollowerConfig;
+SparkMaxConfig rightFollowerConfig; 
+
 };
