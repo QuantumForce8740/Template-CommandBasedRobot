@@ -4,32 +4,32 @@
 
 #include "RobotContainer.h"
 
-#include <frc2/command/button/Trigger.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+#include <frc2/command/button/JoystickButton.h>
 
-#include "commands/Autos.h"
-#include "commands/ExampleCommand.h"
+#include "commands/DefaultDrive.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
-  ConfigureBindings();
+  ConfigureButtonBindings();
+
+  // Set up default drive command
+  m_drive.SetDefaultCommand(DefaultDrive(
+      &m_drive, [this] { return -m_driverController.GetRawAxis(1); },
+      [this] { return -m_driverController.GetRawAxis(2); }));
 }
 
-void RobotContainer::ConfigureBindings() {
-  // Configure your trigger bindings here
+void RobotContainer::ConfigureButtonBindings() {
+  // Configure your button bindings here
 
-  // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-  frc2::Trigger([this] {
-    return m_subsystem.ExampleCondition();
-  }).OnTrue(ExampleCommand(&m_subsystem).ToPtr());
+  // NOTE: since we're binding a CommandPtr, command ownership here is moved to
+  // the scheduler thus, no memory leaks!
 
-  // Schedule `ExampleMethodCommand` when the Xbox controller's B button is
-  // pressed, cancelling on release.
-  m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
+frc2::Command* RobotContainer::GetAutonomousCommand() {
+  // Runs the chosen command in autonomous
+  return m_chooser.GetSelected();
 }

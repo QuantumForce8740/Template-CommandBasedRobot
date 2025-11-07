@@ -1,34 +1,39 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 #pragma once
 
-#include <frc/Encoder.h>
-#include <frc/drive/DifferentialDrive.h>
-#include <frc/motorcontrol/PWMSparkMax.h>
-#include <frc2/command/SubsystemBase.h>
+#include <functional>
 
-#include "Constants.h"
+#include <frc2/command/Command.h>
+#include <frc2/command/CommandHelper.h>
 
-class DriveSubsystem : public frc2::SubsystemBase {
+#include "subsystems/DriveSubsystem.h"
+
+/**
+ * A command to drive the robot with joystick input passed in through lambdas.
+ * Written explicitly for pedagogical purposes - actual code should inline a
+ * command this simple with RunCommand.
+ *
+ * @see RunCommand
+ */
+class DefaultDrive : public frc2::CommandHelper<frc2::Command, DefaultDrive> {
  public:
-  DriveSubsystem();
-  void Periodic() override;
-  void ArcadeDrive(double fwd, double rot);
+  /**
+   * Creates a new DefaultDrive.
+   *
+   * @param subsystem The drive subsystem this command wil run on.
+   * @param forward The control input for driving forwards/backwards
+   * @param rotation The control input for turning
+   */
+  DefaultDrive(DriveSubsystem* subsystem, std::function<double()> forward,
+               std::function<double()> rotation);
 
-  void ResetEncoders();
-  double GetAverageEncoderDistance();
-
-  void SetMaxOutput(double maxOutput);
-
-  void InitSendable(wpi::SendableBuilder& builder) override;
+  void Execute() override;
 
  private:
- 
-  frc::PWMSparkMax m_left1;
-  frc::PWMSparkMax m_left2;
-  frc::PWMSparkMax m_right1;
-  frc::PWMSparkMax m_right2;
-
-  frc::DifferentialDrive m_drive{[&](double output) { m_left1.Set(output); },
-                                 [&](double output) { m_right1.Set(output); }};
-  frc::Encoder m_leftEncoder;
-  frc::Encoder m_rightEncoder;
+  DriveSubsystem* m_drive;
+  std::function<double()> m_forward;
+  std::function<double()> m_rotation;
 };
