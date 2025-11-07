@@ -13,7 +13,7 @@ RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
-  ConfigureButtonBindings();
+  ConfigureBindings();
 
   // Set up default drive command
   m_drive.SetDefaultCommand(DefaultDrive(
@@ -21,7 +21,7 @@ RobotContainer::RobotContainer() {
       [this] { return -m_driverController.GetRawAxis(2); }));
 }
 
-void RobotContainer::ConfigureButtonBindings() {
+void RobotContainer::ConfigureBindings() {
   // Configure your button bindings here
 
   // NOTE: since we're binding a CommandPtr, command ownership here is moved to
