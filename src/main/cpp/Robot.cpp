@@ -36,10 +36,11 @@ void Robot::DisabledPeriodic() {}
 void Robot::AutonomousInit() {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
-  if (m_autonomousCommand) {
-    m_autonomousCommand->Schedule();
+  if (m_autonomousCommand != nullptr) {
+    frc2::CommandScheduler::GetInstance().Schedule(m_autonomousCommand);
   }
 }
+
 
 void Robot::AutonomousPeriodic() {}
 

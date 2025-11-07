@@ -2,9 +2,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/chasis.h"
+#include "subsystems/ChasisSubsystem.h"
 #include <rev/SparkMax.h>
-#include <wpi/sendable.h> 
+#include <wpi/sendable/SendableBuilder.h>
 
 ChasisSubsystem::ChasisSubsystem() {
 
@@ -15,7 +15,7 @@ rightLeaderConfig.Apply(globalConfig).Inverted(true);
 leftLeaderConfig.Apply(globalConfig);
 
 leftFollowerConfig.Apply(globalConfig).Follow(m_leftFollowMotor); 
-rightFollerConfig.Apply(globalConfig).Follow(m_rightFollowMotor);
+rightFollowerConfig.Apply(globalConfig).Follow(m_rightFollowMotor);
 }
   
 
@@ -24,7 +24,7 @@ void ChasisSubsystem::Periodic() {
 }
 
 void ChasisSubsystem::ArcadeDrive(double forward, double rotation){
-  m_drivechasis.ArcadeDrive(forward, rotation); 
+  m_drive.ArcadeDrive(forward, rotation); 
 }
   // Implementation of subsystem constructor goes here.
 

@@ -6,7 +6,7 @@
 
 #include <frc2/command/Command.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/chasis.h"
+#include "subsystems/ChasisSubsystem.h"
 
 
 
@@ -33,7 +33,7 @@ class ChasisDrive : public frc2::CommandHelper<frc2::Command, ChasisDrive> {
 
 void Execute() override; 
  private:
-  ChasisDrive* m_chasis;
+  ChasisSubsystem* m_drive;
   std::function<double()> m_forward; 
   std::function<double()> m_rotation; 
 };

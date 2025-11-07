@@ -10,8 +10,8 @@
 #include <frc/XboxController.h>
 
 #include "Constants.h"
-#include "subsystems/chasis.h"
-#include "commands/chasis2.h"
+#include "subsystems/ChasisSubsystem.h"
+#include "commands/ChasisDrive.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -24,15 +24,10 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::CommandPtr GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand();
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{
-      OperatorConstants::kDriverControllerPort};
-
-
-
   // The robot's subsystems are defined here...
   ChasisSubsystem m_drive;
   frc::SendableChooser<frc2::Command*> m_chooser;

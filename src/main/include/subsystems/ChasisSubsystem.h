@@ -7,7 +7,8 @@
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
-#include <rev/config/SparkConfig.h> 
+#include <rev/config/SparkMaxConfig.h> 
+#include <frc/drive/DifferentialDrive.h>
 #include "Constants.h"
 
 using namespace rev::spark; 
@@ -38,17 +39,17 @@ class ChasisSubsystem : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
- SparkMax m_leftLeadMotor{1, rev::spark::SparkMax::MotorType::kBrushless};
-  SparkMax m_rightLeadMotor{6, rev::spark::SparkMax::MotorType::kBrushless};
-  SparkMax m_leftFollowMotor{2, rev::spark::SparkMax::MotorType::kBrushless};
-  SparkMax m_rightFollowMotor{5, rev::spark::SparkMax::MotorType::kBrushless};
+  SparkMax m_leftLeadMotor{1, SparkMax::MotorType::kBrushless};
+  SparkMax m_rightLeadMotor{6, SparkMax::MotorType::kBrushless};
+  SparkMax m_leftFollowMotor{2, SparkMax::MotorType::kBrushless};
+  SparkMax m_rightFollowMotor{5, SparkMax::MotorType::kBrushless};
 
-frc::DifferencialDrive m_drive{m_leftLeadMotor, m_rightLeadMotor};
+  frc::DifferentialDrive m_drive{m_leftLeadMotor, m_rightLeadMotor};
 
-SparkMaxConfig globalConfig; 
-SparkMaxConfig rightLeaderConfig;
-SparkMaxConfig leftLeaderConfig; 
-SparkMaxConfig leftFollowerConfig;
-SparkMaxConfig rightFollowerConfig; 
+  SparkMaxConfig globalConfig; 
+  SparkMaxConfig rightLeaderConfig;
+  SparkMaxConfig leftLeaderConfig; 
+  SparkMaxConfig leftFollowerConfig;
+  SparkMaxConfig rightFollowerConfig; 
 
 };
