@@ -11,6 +11,14 @@
 
 #include "RobotContainer.h"
 
+#include <frc/XboxController.h>
+#include <rev/SparkMax.h>
+
+
+
+using namespace rev::spark;
+
+
 class Robot : public frc::TimedRobot {
  public:
   Robot();
@@ -27,7 +35,15 @@ class Robot : public frc::TimedRobot {
 
  private:
   // Have it empty by default so that if testing teleop it
-  // doesn't have undefined behavior and potentially crash.
+  // doesn't have undefined behavior and potentially crash.  ignora este etexto
+
+
+
+  frc::XboxController joystick{0};
+
+    m_leftFollower.Follow(m_leftLeader);
+    m_rightFollower.Follow(m_rightLeader);
+
   std::optional<frc2::CommandPtr> m_autonomousCommand;
 
   RobotContainer m_container;

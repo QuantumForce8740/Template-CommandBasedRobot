@@ -6,8 +6,23 @@
 
 #include <frc2/command/CommandScheduler.h>
 
+#include <frc/smartdashboard/SmartDashboard.h>
+#include <rev/config/SparkMaxConfig.h>
+
 Robot::Robot() {}
 
+
+
+
+   /*
+   * Set parameters that will apply to all SPARKs. We will also use this as
+   * the left leader config.
+   */
+
+
+  
+
+///////////////////////////////////
 /**
  * This function is called every 20 ms, no matter the mode. Use
  * this for items like diagnostics that you want to run during disabled,
@@ -58,6 +73,28 @@ void Robot::TeleopInit() {
  */
 void Robot::TeleopPeriodic() {}
 
+/* tal vez
+
+
+
+* Get forward and rotation values from the joystick. Invert the joystick's
+   * Y value because its forward direction is negative.
+   
+  double forward = -joystick.GetLeftY();
+  double rotation = joystick.GetRightX();
+
+  
+   * Apply values to left and right side. We will only need to set the leaders
+   * since the other motors are in follower mode.
+   
+  m_leftLeader.Set(forward + rotation);
+  m_rightLeader.Set(forward - rotation);
+
+
+*/
+
+
+////////
 /**
  * This function is called periodically during test mode.
  */
