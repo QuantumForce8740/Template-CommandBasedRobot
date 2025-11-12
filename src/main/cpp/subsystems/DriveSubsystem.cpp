@@ -60,18 +60,18 @@ void DriveSubsystem::ArcadeDrive(double fwd, double rot) {
   m_drive.ArcadeDrive(fwd, rot);
 }
 
-// void DriveSubsystem::ResetEncoders() {
-//   m_leftEncoder.Reset();
-//   m_rightEncoder.Reset();
-// }
+void DriveSubsystem::SetMaxOutput(double maxOutput) {
+  m_drive.SetMaxOutput(maxOutput);
+}
 
-// double DriveSubsystem::GetAverageEncoderDistance() {
-//   return (m_leftEncoder.GetDistance() + m_rightEncoder.GetDistance()) / 2.0;
-// }
+void DriveSubsystem::ResetEncoders() {
+  m_leftEncoder.SetPosition(0);
+  m_rightEncoder.SetPosition(0);
+}
 
-// void DriveSubsystem::SetMaxOutput(double maxOutput) {
-//   m_drive.SetMaxOutput(maxOutput);
-// }
+double DriveSubsystem::GetAverageEncoderDistance() {
+  return (m_leftEncoder.GetPosition() + m_rightEncoder.GetPosition()) / 2.0;
+}
 
 // void DriveSubsystem::InitSendable(wpi::SendableBuilder& builder) {
 //   SubsystemBase::InitSendable(builder);

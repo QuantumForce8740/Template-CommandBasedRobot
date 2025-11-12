@@ -10,7 +10,11 @@
 
 #include "Constants.h"
 #include "commands/DefaultDrive.h"
+#include "commands/DriveDistance.h"
 #include "subsystems/DriveSubsystem.h"
+
+using namespace OperatorConstants;
+using namespace AutoConstants;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -35,7 +39,11 @@ class RobotContainer {
   frc::SendableChooser<frc2::Command*> m_chooser;
 
   // The driver's controller
-  frc::XboxController m_driverController{0};
+  frc::XboxController m_driverController{kDriverControllerPort};
 
   void ConfigureButtonBindings();
+
+  // The autonomous routines
+  DriveDistance m_simpleAuto{kAutoDriveDistanceInches,
+                             kAutoDriveSpeed, &m_drive};
 };

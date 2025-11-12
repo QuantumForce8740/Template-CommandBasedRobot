@@ -8,9 +8,13 @@
 #include <frc2/command/button/JoystickButton.h>
 
 #include "commands/DefaultDrive.h"
+#include "commands/HalfSpeedDrive.h"
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+
+  // Add commands to the autonomous command chooser
+  m_chooser.SetDefaultOption("Simple Auto", &m_simpleAuto);
 
   // Configure the button bindings
   ConfigureButtonBindings();
@@ -26,6 +30,11 @@ void RobotContainer::ConfigureButtonBindings() {
 
   // NOTE: since we're binding a CommandPtr, command ownership here is moved to
   // the scheduler thus, no memory leaks!
+
+  // While holding the shoulder button, drive at half speed
+  frc2::JoystickButton(&m_driverController,
+                       frc::XboxController::Button::kRightBumper)
+      .WhileTrue(HalfSpeedDrive(&m_drive).ToPtr());
 
 }
 
