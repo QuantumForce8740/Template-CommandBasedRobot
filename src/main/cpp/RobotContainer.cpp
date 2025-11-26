@@ -15,6 +15,10 @@ RobotContainer::RobotContainer() {
 
   // Add commands to the autonomous command chooser
   m_chooser.SetDefaultOption("Simple Auto", &m_simpleAuto);
+  m_chooser.AddOption("Control Auto", &m_controlAuto);
+
+  // Put the chooser on the dashboard
+  frc::Shuffleboard::GetTab("Autonomous").Add(m_chooser);
 
   // Configure the button bindings
   ConfigureButtonBindings();

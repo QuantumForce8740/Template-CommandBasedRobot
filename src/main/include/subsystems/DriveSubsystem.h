@@ -10,6 +10,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/SparkMax.h>
 #include <rev/config/SparkMaxConfig.h>
+#include <units/velocity.h>
 
 #include "Constants.h"
 

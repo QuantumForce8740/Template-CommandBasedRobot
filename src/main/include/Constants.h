@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <units/velocity.h>
+
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
  * numerical or boolean constants.  This should not be used for any other
@@ -27,5 +29,6 @@ inline constexpr int kRightMotor2Port = 5;
 
 namespace AutoConstants {
 constexpr double kAutoDriveDistanceInches = 2.0;
+constexpr double kAutoDriveDistanceMeters = 2.0;
 constexpr double kAutoDriveSpeed = 0.3;
 }  // namespace AutoConstants

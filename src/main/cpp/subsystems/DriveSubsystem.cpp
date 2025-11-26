@@ -5,6 +5,7 @@
 #include "subsystems/DriveSubsystem.h"
 
 #include <wpi/sendable/SendableBuilder.h>
+#include <units/velocity.h>
 
 DriveSubsystem::DriveSubsystem(){
 

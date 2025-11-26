@@ -11,6 +11,7 @@
 #include "Constants.h"
 #include "commands/DefaultDrive.h"
 #include "commands/DriveDistance.h"
+#include "commands/DriveDistanceControl.h"
 #include "subsystems/DriveSubsystem.h"
 
 using namespace OperatorConstants;
@@ -46,4 +47,6 @@ class RobotContainer {
   // The autonomous routines
   DriveDistance m_simpleAuto{kAutoDriveDistanceInches,
                              kAutoDriveSpeed, &m_drive};
+
+  DriveDistanceControl m_controlAuto{units::meter_t{kAutoDriveDistanceMeters}, kAutoDriveSpeed, &m_drive};
 };
