@@ -13,20 +13,22 @@ DriveSubsystem::DriveSubsystem(){
    * Set parameters that will apply to all SPARKs. We will also use this as
    * the left leader config.
    */
+  encoderConfig.PositionConversionFactor(0.1);
+
   globalConfig.SmartCurrentLimit(50).SetIdleMode(
       SparkMaxConfig::IdleMode::kBrake);
 
   // Apply the global config and invert since it is on the opposite side
-  rightLeaderConfig.Apply(globalConfig).Inverted(true);
+  rightLeaderConfig.Apply(globalConfig).Apply(encoderConfig).Inverted(true);
 
   // Apply the global config
-  leftLeaderConfig.Apply(globalConfig);
+  leftLeaderConfig.Apply(globalConfig).Apply(encoderConfig);
 
   // Apply the global config and set the leader SPARK for follower mode
-  leftFollowerConfig.Apply(globalConfig).Follow(m_leftLeadMotor);
+  leftFollowerConfig.Apply(globalConfig).Apply(encoderConfig).Follow(m_leftLeadMotor);
 
   // Apply the global config and set the leader SPARK for follower mode
-  rightFollowerConfig.Apply(globalConfig).Follow(m_rightLeadMotor);
+  rightFollowerConfig.Apply(globalConfig).Apply(encoderConfig).Follow(m_rightLeadMotor);
 
   /*
    * Apply the configuration to the SPARKs.

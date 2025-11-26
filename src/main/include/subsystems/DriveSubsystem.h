@@ -11,6 +11,7 @@
 #include <rev/SparkMax.h>
 #include <rev/config/SparkMaxConfig.h>
 #include <units/velocity.h>
+#include <rev/RelativeEncoder.h>
 
 #include "Constants.h"
 
@@ -80,4 +81,6 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
   SparkRelativeEncoder m_leftEncoder = m_leftLeadMotor.GetEncoder();
   SparkRelativeEncoder m_rightEncoder = m_rightLeadMotor.GetEncoder();
+
+  EncoderConfig encoderConfig;
 };
